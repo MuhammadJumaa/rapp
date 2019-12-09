@@ -14,7 +14,7 @@ Navbar.propTypes = {
 }
 
 Navbar.defaultProps = {
-    title : "default apps"
+    title : "default appss"
 }
 
 export default Navbar;
