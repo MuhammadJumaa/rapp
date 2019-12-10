@@ -1,22 +1,19 @@
-import React from 'react';
-import './App.css';
-import User from './components/User';
+import React, { Component } from 'react'
 import Navbar from './components/Navbar';
+import Users from './components/Users';
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar/>
-      <hr/>
-      <User
-      name = "fatih"
-      salary = "10000"
-      department ="bilişim"
-      />
-      <User
-      />
-    </div>
-  );
+import './App.css';
+
+class App extends Component {
+  render(){
+    return(
+      <div className="App">
+        <Navbar/>
+        <hr/>
+        <Users/>
+      </div>
+    );
+  }
 }
 
 export default App;
