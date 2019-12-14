@@ -19,6 +19,9 @@ export default class User extends Component {
     //Consumer dispatch
     dispatch({type: "DELETE_USER",payload:id});
   }
+  componentWillUnmount(){
+    console.log("Component Will Unmount");
+  }
   constructor(props) {
     super(props);
     this.state = {
