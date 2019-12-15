@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 class Test extends Component {
     constructor(props){
         super(props);
@@ -10,7 +9,7 @@ class Test extends Component {
     }
     componentDidMount(){
         console.log("componentdidmount");
-        //Api İstekleri
+        
         this.setState({
             a : 20
         });
