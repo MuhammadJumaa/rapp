@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "unique-1",
+      "name": "Fatih DURNA",
+      "salary": "5000",
+      "department": "bilişim"
+    },
+    {
+      "id": "unique-2",
+      "name": "Yunus BAYSAL",
+      "salary": "15000",
+      "department": "bilişim"
+    },
+    {
+      "name": "emre",
+      "department": "yazılım",
+      "salary": "15000",
+      "id": "5neNbLI"
+    }
+  ]
+}

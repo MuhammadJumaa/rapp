@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import posed from 'react-pose'
 import UserConsumer from "../context"
-
-var uniqid = require('uniqid');
+import axios from 'axios'
 
 const Animation = posed.div({
     visible : {
@@ -18,8 +17,6 @@ const Animation = posed.div({
         }
     }
 })
-
-
 class AddUser extends Component {
     state = {
         visible : false,
@@ -39,17 +36,16 @@ class AddUser extends Component {
             [e.target.salary] : e.target.value
         })
     }
-    addUser = (dispatch,e) => {
+    addUser = async (dispatch,e) => {
       e.preventDefault();
       const {name,department,salary} = this.state;
       const newUser = {
-          id : uniqid(),
           name:name,
           department:department,
           salary:salary
       }
-      console.log(newUser);
-      dispatch({type:"ADD_USER",payload:newUser});
+      const response = await axios.post("http://localhost:3004/users",newUser);
+      dispatch({type:"ADD_USER",payload:response.data});
     }
     render() {
         const {visible,name,department,salary} = this.state;
