@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserConsumer from "../context";
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 export default class User extends Component {
   onClickEvet() {
@@ -33,7 +34,7 @@ export default class User extends Component {
     this.onClickEvet = this.onClickEvet.bind(this);
   }
   render() {
-    const { name, department, salary } = this.props;
+    const { id,name, department, salary } = this.props;
     const { isVisible } = this.state;
 
     return(
@@ -50,13 +51,16 @@ export default class User extends Component {
                     </h4>
                     <i onClick={this.onDeleteUser.bind(this,dispatch)} className="far fa-trash-alt" style={{ cursor: "pointer" }}></i>
                   </div>
-                  {isVisible ? (
+                  {
+                  isVisible ? (
                     <div className="card-body">
                       <p className="card-text">Maaş : {salary}</p>
                       <p className="card-text">Department : {department}</p>
+                      <Link to={`edit/${id}`} className="btn btn-dark btn-block">Update User</Link>
                       <p>{this.state.test}</p>
                     </div>
-                  ) : null}
+                  ) : null
+                  }
                 </div>
               </div>
             );
