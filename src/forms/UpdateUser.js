@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import UserConsumer from "../context"
+import axios from 'axios';
 
 class UpdateUser extends Component {
     state = {
@@ -14,12 +15,46 @@ class UpdateUser extends Component {
             [e.target.salary] : e.target.value
         })
     }
-    updateUser = async (dispatch,e) => {
-      e.preventDefault();
-     
+    componentDidMount = async () => {
+        const {id} = this.props.match.params;
+        const response = await axios.get(`http://localhost:3004/users/${id}`)
+        const {name,salary,department} = response.data;
+        this.setState({
+            name,
+            salary,
+            department
+        });
     }
+    validateForm = () => {
+        const {name,salary,department} = this.state;
+        if(name === "" || salary === "" || department === ""){
+            return false;
+        }
+        return true;
+    }
+    updateUser = async (dispatch,e) => {
+        e.preventDefault();
+        const {name,salary,department} = this.state;
+        const {id} = this.props.match.params;
+        const updatedUser = {
+            name,
+            salary,
+            department
+        };
+        if(!this.validateForm()){
+            this.setState({
+                error:true
+            })
+            return;
+          }
+        const response = await axios.put(`http://localhost:3004/users/${id}`, updatedUser)
+        dispatch({type:"UPDATE_USER",payload:response.data});
+        //redirect
+        this.props.history.push("/");
+    }
+    
     render() {
-        const {name,department,salary} = this.state;
+        const {name,department,salary,error} = this.state;
         return <UserConsumer>
             {
                 value => {
@@ -31,6 +66,13 @@ class UpdateUser extends Component {
                                     <h4>Update User Form</h4>
                                 </div>
                                 <div className="card-body">
+                                    {
+                                        error ? 
+                                        <div className="alert alert-danger">
+                                            Lütfen Bilgilerinizi Kontrol Edin.
+                                        </div>
+                                        : null
+                                    }
                                     <form className="text-left" onSubmit={this.updateUser.bind(this,dispatch)}>
                                         <div className="selam"></div>
                                         <div className="form-group">
@@ -45,7 +87,7 @@ class UpdateUser extends Component {
                                             <label htmlFor="salary">Salary</label>
                                             <input type="text" onChange={this.changeInput} value={salary} name="salary" id="salary" placeholder="Salary" className="form-control" />
                                         </div>
-                                        <button type="submit" className="btn btn-danger btn-block">Add User</button>
+                                        <button type="submit" className="btn btn-danger btn-block">Update User</button>
                                     </form>
                                 </div>
                             </div>

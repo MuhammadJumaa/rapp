@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "id": "unique-1",
-      "name": "Fatih DURNA",
-      "salary": "5000",
-      "department": "bilişim"
+      "name": "Fatih",
+      "salary": "15000",
+      "department": "Durna",
+      "id": "unique-1"
     },
     {
       "id": "unique-2",
@@ -17,6 +17,12 @@
       "department": "yazılım",
       "salary": "15000",
       "id": "5neNbLI"
+    },
+    {
+      "name": "Zeynep Yerebakan",
+      "department": "yazılım",
+      "salary": "1000",
+      "id": "qkbcEiY"
     }
   ]
 }
