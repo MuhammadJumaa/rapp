@@ -32,7 +32,7 @@ export class UserProvider extends Component {
         }
       }
     componentDidMount = async () => {
-      const response = await axios.get("http://localhost:3004/users");
+      const response = await axios.get("/users");
       this.setState({
         users:response.data
       })
